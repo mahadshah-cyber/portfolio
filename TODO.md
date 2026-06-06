@@ -1,0 +1,16 @@
+- [x] Create admin auth guard + helpers:
+  - [x] Add `src/lib/adminAuth.ts` (verify `admin_token` JWT, no hardcoded secret fallback)
+  - [x] Add `src/lib/api.ts` (safe JSON parsing + content-type validation)
+- [x] Update auth route:
+  - [x] Remove hardcoded `JWT_SECRET` fallback in `src/app/api/auth/login/route.ts`
+- [x] Protect admin APIs:
+  - [x] Update `src/app/api/admin/posts/route.ts` + `[id]/route.ts`
+- [x] Update `src/app/api/admin/projects/route.ts` + `[id]/route.ts`
+- [x] Crash-proof improvements:
+  - [x] Use safe JSON/content-type parsing in all POST/PATCH endpoints that read body
+  - [x] Throttle heavy WebAudio events (whoosh/pageTransition) to prevent lag/crashes
+- [x] Privacy:
+  - [x] Redact contact-form logs in `src/app/api/contact/route.ts`
+- [x] Verify:
+  - [x] Run `npm run lint`
+  - [x] Run `npm run build`

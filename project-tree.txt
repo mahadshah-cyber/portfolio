@@ -1,0 +1,130 @@
+Folder PATH listing
+Volume serial number is 548F-137C
+C:\USERS\HP\DESKTOP\CODING\PROFILE\PORTFOLIO\SRC
+|   middleware.ts
+|   
++---app
+|   |   favicon.ico
+|   |   globals.css
+|   |   layout.tsx
+|   |   page.tsx
+|   |   robots.ts
+|   |   sitemap.ts
+|   |   
+|   +---admin
+|   |   |   page.tsx
+|   |   |   
+|   |   +---blog
+|   |   |   |   page.tsx
+|   |   |   |   
+|   |   |   +---new
+|   |   |   |       page.tsx
+|   |   |   |       
+|   |   |   \---[id]
+|   |   |       \---edit
+|   |   |               page.tsx
+|   |   |               
+|   |   +---login
+|   |   |       page.tsx
+|   |   |       
+|   |   +---posts
+|   |   |   +---new
+|   |   |   |       page.tsx
+|   |   |   |       
+|   |   |   \---[id]
+|   |   |       \---edit
+|   |   |               page.tsx
+|   |   |               
+|   |   \---projects
+|   |       |   page.tsx
+|   |       |   
+|   |       +---new
+|   |       |       page.tsx
+|   |       |       
+|   |       \---[id]
+|   |           \---edit
+|   |                   page.tsx
+|   |                   
+|   +---api
+|   |   +---admin
+|   |   |   +---posts
+|   |   |   |   |   route.ts
+|   |   |   |   |   
+|   |   |   |   \---[id]
+|   |   |   |           route.ts
+|   |   |   |           
+|   |   |   \---projects
+|   |   |       |   route.ts
+|   |   |       |   
+|   |   |       \---[id]
+|   |   |               route.ts
+|   |   |               
+|   |   +---auth
+|   |   |   \---login
+|   |   |           route.ts
+|   |   |           
+|   |   +---contact
+|   |   |       route.ts
+|   |   |       
+|   |   +---posts
+|   |   |   |   route.ts
+|   |   |   |   
+|   |   |   \---[slug]
+|   |   |           route.ts
+|   |   |           
+|   |   \---projects
+|   |           route.ts
+|   |           
+|   +---blog
+|   |   |   page.tsx
+|   |   |   
+|   |   \---[slug]
+|   |           page.tsx
+|   |           
+|   +---ctf
+|   |       page.tsx
+|   |       
+|   +---resume
+|   \---terminal
++---components
+|   +---3d
+|   |       Avatar3D.tsx
+|   |       DigitalRain.tsx
+|   |       HeroBackground.tsx
+|   |       ParticleField.tsx
+|   |       SkillTree3D.tsx
+|   |       WebGLErrorBoundary.tsx
+|   |       
+|   +---blog
+|   |       PostCard.tsx
+|   |       RichEditor.tsx
+|   |       
+|   +---sections
+|   |       About.tsx
+|   |       Certifications.tsx
+|   |       Contact.tsx
+|   |       Hero.tsx
+|   |       Projects.tsx
+|   |       Skills.tsx
+|   |       
+|   +---seo
+|   |       JsonLd.tsx
+|   |       
+|   \---ui
+|           BackgroundTransition.tsx
+|           CustomCursor.tsx
+|           Footer.tsx
+|           Navbar.tsx
+|           ScrollRevealText.tsx
+|           Skeleton.tsx
+|           SmoothScroll.tsx
+|           SoundManager.tsx
+|           Typewriter.tsx
+|           
+\---lib
+        animations.ts
+        prisma.ts
+        sound.ts
+        utils.ts
+        webgl.ts
+        
