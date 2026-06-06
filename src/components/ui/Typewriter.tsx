@@ -20,10 +20,31 @@ export function Typewriter({
 }: TypewriterProps) {
   const [displayText, setDisplayText] = useState("");
   const [showCursor, setShowCursor] = useState(true);
+  const [heroVisible, setHeroVisible] = useState(true);
 
   const textIndexRef = useRef(0);
   const charIndexRef = useRef(0);
   const isDeletingRef = useRef(false);
+  const containerRef = useRef<HTMLSpanElement>(null);
+
+  // Watch if hero section is visible — stop sound when scrolled away
+  useEffect(() => {
+    const heroSection = document.getElementById("hero");
+    if (!heroSection) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // Only play sound when hero is at least 30% visible
+          setHeroVisible(entry.intersectionRatio >= 0.3);
+        });
+      },
+      { threshold: [0, 0.3, 0.6, 1.0] },
+    );
+
+    observer.observe(heroSection);
+    return () => observer.disconnect();
+  }, []);
 
   // Blinking cursor
   useEffect(() => {
@@ -44,7 +65,8 @@ export function Typewriter({
         if (charIndex < currentText.length) {
           charIndexRef.current += 1;
           setDisplayText(currentText.slice(0, charIndexRef.current));
-          soundManager.tick();
+          // Only play sound when hero is visible
+          if (heroVisible) soundManager.tick();
           timeout = setTimeout(tick, speed);
         } else {
           timeout = setTimeout(() => {
@@ -67,10 +89,11 @@ export function Typewriter({
 
     timeout = setTimeout(tick, speed);
     return () => clearTimeout(timeout);
-  }, [texts, speed, deleteSpeed, pauseDuration]);
+  }, [texts, speed, deleteSpeed, pauseDuration, heroVisible]);
 
   return (
     <span
+      ref={containerRef}
       className={className}
       style={{
         background: "none",

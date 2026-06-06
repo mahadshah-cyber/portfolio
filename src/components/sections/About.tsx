@@ -449,16 +449,19 @@ export function About() {
                   text="A dedicated student at the University of Science and Technology Peshawar (UET), pursuing a mission to master Cybersecurity and software development. Currently excelling in Computer Science with a strong focus on digital defense."
                   as="p"
                   className="text-base sm:text-lg font-light"
+                  playSound={false}
                 />
                 <ScrollRevealText
                   text="My journey into technology started with curiosity about how digital systems work and evolved into a mission to protect them. I have hands-on experience with C, Java, web development, and a growing expertise in cybersecurity fundamentals."
                   as="p"
                   className="text-base sm:text-lg font-light"
+                  playSound={false}
                 />
                 <ScrollRevealText
                   text="Every project I build is a step toward my goal of becoming a world-class Cybersecurity expert, protecting digital systems globally."
                   as="p"
                   className="text-base sm:text-lg font-light"
+                  playSound={false}
                 />
               </div>
               <div className="mt-8 pt-6 border-t border-zinc-800/30">
