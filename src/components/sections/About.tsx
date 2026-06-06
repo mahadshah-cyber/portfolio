@@ -16,7 +16,6 @@ import {
 import { ScrollRevealText } from "@/components/ui/ScrollRevealText";
 import { EdgeGlowCard } from "@/components/ui/EdgeGlowCard";
 import { Magnetic } from "@/components/ui/Magnetic";
-import { soundManager } from "@/lib/sound";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,22 +32,25 @@ const TERMINAL_LINES = [
 
 const IMAGES = [
   { src: "/images/profile.png", alt: "Syed Mahad Shah — Profile" },
-  { src: "/images/pic.png",     alt: "Syed Mahad Shah — Photo" },
+  { src: "/images/pic.png", alt: "Syed Mahad Shah — Photo" },
 ];
 
 function ImageFlipper() {
   const [index, setIndex] = useState(0);
   const [fading, setFading] = useState(false);
 
-  const flip = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (fading) return;
-    setFading(true);
-    setTimeout(() => {
-      setIndex((i) => (i + 1) % IMAGES.length);
-      setFading(false);
-    }, 280);
-  }, [fading]);
+  const flip = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      if (fading) return;
+      setFading(true);
+      setTimeout(() => {
+        setIndex((i) => (i + 1) % IMAGES.length);
+        setFading(false);
+      }, 280);
+    },
+    [fading],
+  );
 
   const current = IMAGES[index];
   const nextIndex = (index + 1) % IMAGES.length;
@@ -71,7 +73,12 @@ function ImageFlipper() {
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
               className="object-cover transition-all duration-700 group-hover:scale-110"
-              style={{ opacity: fading ? 0 : 1, transition: fading ? 'opacity 0.28s ease' : 'opacity 0.28s ease, transform 0.7s ease' }}
+              style={{
+                opacity: fading ? 0 : 1,
+                transition: fading
+                  ? "opacity 0.28s ease"
+                  : "opacity 0.28s ease, transform 0.7s ease",
+              }}
               priority
             />
             {/* Preload next */}
@@ -81,7 +88,7 @@ function ImageFlipper() {
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
               className="object-cover"
-              style={{ opacity: 0, position: 'absolute', inset: 0 }}
+              style={{ opacity: 0, position: "absolute", inset: 0 }}
             />
             <div className="absolute inset-0 bg-red-500/10 mix-blend-overlay group-hover:animate-pulse" />
           </div>
@@ -97,19 +104,50 @@ function ImageFlipper() {
         </div>
       </div>
 
-      {/* ── Flip arrow — tiny, bottom-right corner ── */}
+      {/* Flip arrow */}
       <button
         onClick={flip}
         aria-label="Flip to next photo"
         title="Flip photo"
         className="img-flip-btn"
       >
-        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M2 3 L5 1 L8 3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M2 7 L5 9 L8 7" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-          <line x1="5" y1="1" x2="5" y2="9" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.5"/>
+        <svg
+          width="10"
+          height="10"
+          viewBox="0 0 10 10"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            d="M2 3 L5 1 L8 3"
+            stroke="currentColor"
+            strokeWidth="1.4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M2 7 L5 9 L8 7"
+            stroke="currentColor"
+            strokeWidth="1.4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <line
+            x1="5"
+            y1="1"
+            x2="5"
+            y2="9"
+            stroke="currentColor"
+            strokeWidth="1"
+            strokeLinecap="round"
+            opacity="0.5"
+          />
         </svg>
-        <span className="img-flip-dot" style={{ animationDelay: `${index * 0.2}s` }} />
+        <span
+          className="img-flip-dot"
+          style={{ animationDelay: `${index * 0.2}s` }}
+        />
       </button>
     </div>
   );
@@ -172,11 +210,7 @@ function TerminalCard() {
         currentLines[lineIndex] = currentLine.slice(0, charIndex);
         setLines([...currentLines]);
         charIndex++;
-        
-        // Character typing sound with subtle panning
-        const pan = -0.5 + (charIndex / currentLine.length);
-        soundManager.tick(pan);
-        
+        // ── Sound removed from terminal typing ──
         timeoutId = setTimeout(typeNextChar, 25 + Math.random() * 15);
       } else {
         currentLines[lineIndex] = currentLine;
@@ -358,10 +392,15 @@ export function About() {
       id="about"
       className="relative py-28 lg:py-36 overflow-hidden bg-black"
     >
-
       {/* Corner accents */}
-      <div className="corner-accent corner-accent-tl" style={{ zIndex: 3, top: '0', left: '0' }} />
-      <div className="corner-accent corner-accent-tr" style={{ zIndex: 3, top: '0', right: '0' }} />
+      <div
+        className="corner-accent corner-accent-tl"
+        style={{ zIndex: 3, top: "0", left: "0" }}
+      />
+      <div
+        className="corner-accent corner-accent-tr"
+        style={{ zIndex: 3, top: "0", right: "0" }}
+      />
 
       <div
         className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(139,0,0,0.06),transparent_60%)] pointer-events-none"
@@ -406,28 +445,28 @@ export function About() {
           >
             <div className="w-full h-full p-6 lg:p-10">
               <div className="space-y-6 text-zinc-400 leading-relaxed">
-              <ScrollRevealText
-                text="A dedicated student at the University of Science and Technology Peshawar (UET), pursuing a mission to master Cybersecurity and software development. Currently excelling in Computer Science with a strong focus on digital defense."
-                as="p"
-                className="text-base sm:text-lg font-light"
-              />
-              <ScrollRevealText
-                text="My journey into technology started with curiosity about how digital systems work and evolved into a mission to protect them. I have hands-on experience with C, Java, web development, and a growing expertise in cybersecurity fundamentals."
-                as="p"
-                className="text-base sm:text-lg font-light"
-              />
-              <ScrollRevealText
-                text="Every project I build is a step toward my goal of becoming a world-class Cybersecurity expert, protecting digital systems globally."
-                as="p"
-                className="text-base sm:text-lg font-light"
-              />
-            </div>
-            <div className="mt-8 pt-6 border-t border-zinc-800/30">
-              <blockquote className="text-sm italic text-zinc-500 font-mono tracking-wide">
-                &ldquo;The only secure system is the one that is constantly
-                evolving.&rdquo;
-              </blockquote>
-            </div>
+                <ScrollRevealText
+                  text="A dedicated student at the University of Science and Technology Peshawar (UET), pursuing a mission to master Cybersecurity and software development. Currently excelling in Computer Science with a strong focus on digital defense."
+                  as="p"
+                  className="text-base sm:text-lg font-light"
+                />
+                <ScrollRevealText
+                  text="My journey into technology started with curiosity about how digital systems work and evolved into a mission to protect them. I have hands-on experience with C, Java, web development, and a growing expertise in cybersecurity fundamentals."
+                  as="p"
+                  className="text-base sm:text-lg font-light"
+                />
+                <ScrollRevealText
+                  text="Every project I build is a step toward my goal of becoming a world-class Cybersecurity expert, protecting digital systems globally."
+                  as="p"
+                  className="text-base sm:text-lg font-light"
+                />
+              </div>
+              <div className="mt-8 pt-6 border-t border-zinc-800/30">
+                <blockquote className="text-sm italic text-zinc-500 font-mono tracking-wide">
+                  &ldquo;The only secure system is the one that is constantly
+                  evolving.&rdquo;
+                </blockquote>
+              </div>
             </div>
           </EdgeGlowCard>
 
@@ -437,10 +476,7 @@ export function About() {
             <Magnetic key={label} strength={0.15}>
               <div
                 className="bento-card rounded-xl glass-card p-5 flex items-center gap-4 group hover:border-red-600/30 transition-all duration-500"
-                onMouseEnter={(e) => {
-                  const pan = (e.clientX / window.innerWidth - 0.5) * 2;
-                  soundManager.hover(pan);
-                }}
+                // ── Sound removed from info card hover ──
               >
                 <div className="w-10 h-10 rounded-lg bg-red-950/20 border border-red-900/20 flex items-center justify-center shrink-0 group-hover:bg-red-950/40 transition-colors">
                   <Icon className="w-5 h-5 text-red-500" />
